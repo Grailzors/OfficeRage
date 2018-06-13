@@ -8,7 +8,7 @@ public class NPCManager : MonoBehaviour {
 
     private void LateUpdate()
     {
-        print(GameManager.colleagueAwarness);
+        //print(GameManager.colleagueAwarness);
     }
 
     private void OnTriggerStay(Collider other)

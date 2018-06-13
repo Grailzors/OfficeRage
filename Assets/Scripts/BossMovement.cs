@@ -8,10 +8,6 @@ public class BossMovement : MonoBehaviour {
 
     //Get the path system set up an then sort this stuff out
 
-    private void Start()
-    {
-        
-    }
 
     private void Update()
     {

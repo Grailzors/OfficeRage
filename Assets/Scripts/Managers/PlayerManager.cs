@@ -140,6 +140,7 @@ public class PlayerManager : MonoBehaviour {
 
     Dictionary<string, float> ScreamableEntities()
     {
+        //Might need to look at adding this to the GameManager instead
         screamEntities = new Dictionary<string, float>();
 
         screamEntities.Add("Sleave", 5f);
@@ -147,6 +148,7 @@ public class PlayerManager : MonoBehaviour {
         screamEntities.Add("Plant", 10f);
         screamEntities.Add("Birds", 10f);
         screamEntities.Add("Window", 15f);
+        screamEntities.Add("Kitchen", 25f);
 
         return screamEntities;
     }

@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
     static public float workReduceAmount = 0.5f;
     static public float colleagueAwarness = 0f;
     static public float clock;
+    static public bool bossDetection;
 
     private float counter;
     private GameObject screamZone;
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour {
         screamZone = GameObject.FindGameObjectWithTag("ScreamZone");
         counter = 0f;
         clock = 9.00f;
+        bossDetection = false;
     }
 
     private void Update()
