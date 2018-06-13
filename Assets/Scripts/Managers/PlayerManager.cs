@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour {
     
     static public float stressLevel = 0f;
     static public bool isWorking;
+    static public bool isScreaming;
 
     private float num;
     private bool workArea;
@@ -17,6 +18,7 @@ public class PlayerManager : MonoBehaviour {
     {
         workArea = false;
         isWorking = false;
+        isScreaming = false;
 
         ScreamableEntities();
     }
@@ -83,6 +85,11 @@ public class PlayerManager : MonoBehaviour {
         {
             print("AAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHH");
             stressLevel -= (1.8f * Time.deltaTime);
+            isScreaming = true;
+        }
+        else
+        {
+            isScreaming = false;
         }
     }
 

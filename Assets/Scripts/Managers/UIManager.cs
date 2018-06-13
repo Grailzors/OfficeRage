@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour {
         StressMeter();
         WorkMeter();
         ClockUpdate();
+        AwarnessUpdate();
     }
 
     void WorkingTextUI()
