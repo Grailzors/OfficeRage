@@ -6,3 +6,5 @@ ProjectSettings/
 *.csproj
 
 Temp/
+
+\.vs/
