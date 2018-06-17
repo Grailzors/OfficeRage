@@ -8,8 +8,15 @@ public class PathManager : MonoBehaviour {
     public Color nodeColor = Color.cyan;
     public Color lineColor = Color.white;
     public float nodeRadius = 1f;
-    public List<Transform> nodes; 
-    
+    public List<Transform> nodes;
+
+    static public List<Transform> pathNodes;
+
+    private void Awake()
+    {
+        pathNodes = nodes;
+    }
+
     private void OnDrawGizmos()
     {
         nodes = new List<Transform>();
@@ -22,16 +29,16 @@ public class PathManager : MonoBehaviour {
         }
 
         //Creates the visuals for the nodes
-        for (int i = 0; i <= nodes.Count - 1; i++)
+        for (int i = 0; i < nodes.Count; i++)
         {
             Gizmos.color = nodeColor;
             Gizmos.DrawSphere(nodes[i].position, nodeRadius);
 
             //Draw lines between the nodes to show the path
-            if (nodes[i + 1] != null)
+            if (i+1 < nodes.Count)
             {
                 Gizmos.color = lineColor;
-                Gizmos.DrawLine(nodes[i].position, nodes[i + 1].position);
+                Gizmos.DrawLine(nodes[i].position, nodes[i+1].position);
             }
         }
     }
