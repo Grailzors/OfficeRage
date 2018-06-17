@@ -10,10 +10,6 @@ public class BossManager : MonoBehaviour {
     //to avoid the boss
     //if boss finds the player, have the boss chase the player back
     //to their desk, this should also increase the player stressLevel
-    private void Update()
-    {
-        print(GameManager.bossDetection);
-    }
 
     private void OnTriggerEnter(Collider other)
     {
