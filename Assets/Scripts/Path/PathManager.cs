@@ -10,6 +10,7 @@ public class PathManager : MonoBehaviour {
     public float nodeRadius = 1f;
     public List<Transform> nodes;
 
+    //Just for debugging remove this and make nodes list a static variable
     static public List<Transform> pathNodes;
 
     private void Awake()
