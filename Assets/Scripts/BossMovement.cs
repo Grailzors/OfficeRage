@@ -5,12 +5,9 @@ using UnityEngine;
 
 public class BossMovement : MonoBehaviour {
 
-    public int startPoint = 0;
+    public int startIndex = 0;
     public float moveSpeed = 2f;
     public float waitTime = 5f;
-    public Color viewColor = Color.red;
-    public float viewHeight = 1.3f;
-    public float viewDistance = 4f;
 
     private float step;
     private GameObject player;
@@ -23,7 +20,7 @@ public class BossMovement : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
 
         //Boss starts at what ever index is set in the inspector
-        currentIndex = startPoint; 
+        currentIndex = StartPostion(startIndex); 
         transform.position = PathManager.pathNodes[currentIndex].position;
 
         StartCoroutine(UpdateIndex());
@@ -37,12 +34,14 @@ public class BossMovement : MonoBehaviour {
         GetFacingDirection();
     }
 
-    private void OnDrawGizmos()
+    int StartPostion(int indexNumber)
     {
-        Gizmos.color = viewColor;
-        //Set the position of the box collider and its movement by adding the 
-        //boss's position to the center value
-        Gizmos.DrawCube(transform.position + gameObject.GetComponent<BoxCollider>().center, gameObject.GetComponent<BoxCollider>().size);
+        if (indexNumber > PathManager.pathNodes.Count)
+        {
+            indexNumber = PathManager.pathNodes.Count - 1;
+        }
+
+        return indexNumber;
     }
 
     void BossMove()
