@@ -5,10 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
+    [Header("Stress Attributes")]
     public int workAmountIncrease = 5;
     public int increaseIntervals = 5;
-    public float slowClock = 15f;
 
+    [Header("Clock Attributes")]
+    public float startTime = 9f;
+    public float lunchStart = 12f;
+    public float lunchFinish = 13f;
+    public float endTime = 17f;
     public float waitTime = 0f;
 
     static public float workLevel = 100f;
@@ -18,18 +23,19 @@ public class GameManager : MonoBehaviour {
     static public bool bossDetection;
 
     private float counter;
-    private GameObject screamZone;
+    //private GameObject screamZone;
     private float minutes;
+    private float hours;
     
     private void Start()
     {
         SceneManager.LoadScene("MainUI", LoadSceneMode.Additive);
 
-        screamZone = GameObject.FindGameObjectWithTag("ScreamZone");
+        //screamZone = GameObject.FindGameObjectWithTag("ScreamZone");
         counter = 0f;
-        clock = 9.00f;
         bossDetection = false;
-        minutes = 0f;
+        clock = startTime;
+        hours = startTime;
 
         StartCoroutine(UpdateClock());
 
@@ -38,7 +44,6 @@ public class GameManager : MonoBehaviour {
     private void Update()
     {
         CountUp();
-        //ClockCounter();
     }
 
     private void LateUpdate()
@@ -59,45 +64,43 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    //void ClockCounter()
-    //{
-    //    //Progresses the time of day
-    //    clock = clock + Time.deltaTime / slowClock; 
-    //}
-
-
     private IEnumerator UpdateClock()
     {
         while (true)
         {
             yield return new WaitForSeconds(waitTime);
 
-            
             minutes += 0.01f;
-            print(minutes);
 
-            if (minutes == 0.60f)
+            if (minutes >= 0.59f)
             {
+                hours += 1;
                 minutes = 0f;
             }
 
+            clock = hours + minutes;
 
-
-            //clock += minutes;
+            DayMileStones();
         }
     }
 
-
-
-    void EndofDay()
+    void DayMileStones()
     {
         //Have some effect to show passage of time like screen fades to black
         //then fades back, maybe implent the week day in there aswell, don't
         //know how meaning full that is, might be funnier to not have it and
         //have this as a constant grind
-        if (clock >= 5f)
+        if(clock == lunchStart)
+        {
+            print("Lunch");
+        }
+        else if (clock == lunchFinish)
+        {
+            print("Lunch Over");
+        }
+        else if (clock == endTime)
         {
             print("End of the Day");
         }
-    }    
+    }
 }
