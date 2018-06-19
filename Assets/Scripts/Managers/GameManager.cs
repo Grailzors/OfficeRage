@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour {
     public int increaseIntervals = 5;
     public float slowClock = 15f;
 
+    public float waitTime = 0f;
+
     static public float workLevel = 100f;
     static public float workReduceAmount = 0.5f;
     static public float colleagueAwarness = 0f;
@@ -16,20 +18,27 @@ public class GameManager : MonoBehaviour {
     static public bool bossDetection;
 
     private float counter;
+    private GameObject screamZone;
+    private float minutes;
     
     private void Start()
     {
         SceneManager.LoadScene("MainUI", LoadSceneMode.Additive);
 
+        screamZone = GameObject.FindGameObjectWithTag("ScreamZone");
         counter = 0f;
         clock = 9.00f;
         bossDetection = false;
+        minutes = 0f;
+
+        StartCoroutine(UpdateClock());
+
     }
 
     private void Update()
     {
         CountUp();
-        ClockCounter();
+        //ClockCounter();
     }
 
     private void LateUpdate()
@@ -50,11 +59,35 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    void ClockCounter()
+    //void ClockCounter()
+    //{
+    //    //Progresses the time of day
+    //    clock = clock + Time.deltaTime / slowClock; 
+    //}
+
+
+    private IEnumerator UpdateClock()
     {
-        //Progresses the time of day
-        clock = clock + Time.deltaTime / slowClock; 
+        while (true)
+        {
+            yield return new WaitForSeconds(waitTime);
+
+            
+            minutes += 0.01f;
+            print(minutes);
+
+            if (minutes == 0.60f)
+            {
+                minutes = 0f;
+            }
+
+
+
+            //clock += minutes;
+        }
     }
+
+
 
     void EndofDay()
     {
