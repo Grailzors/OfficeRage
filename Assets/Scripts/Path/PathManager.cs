@@ -10,24 +10,18 @@ public class PathManager : MonoBehaviour {
     public float nodeRadius = 1f;
     public List<Transform> nodes;
 
-    //Just for debugging remove this and make nodes list a static variable
+    //Just for debuggin
     static public List<Transform> pathNodes;
 
     private void Awake()
     {
+        GetNodes();
         pathNodes = nodes;
     }
 
     private void OnDrawGizmos()
     {
-        nodes = new List<Transform>();
-
-        //Puts the children of the PathManager into a list for node
-        //visuallization
-        for (int child = 0; child < transform.childCount; child++)
-        {
-            nodes.Add(transform.GetChild(child));
-        }
+        GetNodes();
 
         //Creates the visuals for the nodes
         for (int i = 0; i < nodes.Count; i++)
@@ -43,5 +37,17 @@ public class PathManager : MonoBehaviour {
             }
         }
     }
-}
 
+    void GetNodes()
+    {
+        nodes = new List<Transform>();
+
+        //Puts the children of the PathManager into a list for node
+        //visuallization
+        for (int child = 0; child < transform.childCount; child++)
+        {
+            nodes.Add(transform.GetChild(child));
+        }
+    }
+
+}
