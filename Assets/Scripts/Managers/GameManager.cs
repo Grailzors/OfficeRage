@@ -16,13 +16,11 @@ public class GameManager : MonoBehaviour {
     static public bool bossDetection;
 
     private float counter;
-    private GameObject screamZone;
     
     private void Start()
     {
         SceneManager.LoadScene("MainUI", LoadSceneMode.Additive);
 
-        screamZone = GameObject.FindGameObjectWithTag("ScreamZone");
         counter = 0f;
         clock = 9.00f;
         bossDetection = false;
@@ -68,25 +66,5 @@ public class GameManager : MonoBehaviour {
         {
             print("End of the Day");
         }
-    }
-
-    /*
-    void ScreamZoneControler()
-    {
-        //Currently setting the ScreamZone on and off 
-        //Instead have it switch between two sprite for the room
-        //Currently have this turned off not sure I want this, I feel 
-        //it might not actual add much to the game play
-        
-        if (clock < 12.00f || clock > 9.10f)
-        {
-            screamZone.SetActive(false) ;
-        }
-        else
-        {
-            screamZone.SetActive(true);
-        }
-        
-    }
-    */
+    }    
 }
